@@ -24,8 +24,8 @@
     </div>
     
     <ion-range [min]="0" [max]="200000" [step]="1000" [dualKnobs]="true" [(ngModel)]="tuitionRange">
-      <ion-label slot="start">50k</ion-label>
-      <ion-label slot="end">120k</ion-label>
+      <ion-label slot="start">{{tuitionRange.lower.toLocaleString()}}</ion-label>
+      <ion-label slot="end">{{tuitionRange.upper.toLocaleString()}}</ion-label>
     </ion-range>
   </div>
   
