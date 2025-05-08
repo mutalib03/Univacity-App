@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <p>{{ title }}</p>
+</ion-header>
+
+<ion-content>
+  <div class="search-container">
+    <ion-searchbar 
+      placeholder="Search {{ searchPlaceholder }}" 
+      [(ngModel)]="searchTerm"
+      (ionInput)="filterItems()"
+      class="selection-search">
+    </ion-searchbar>
+  </div>
+
+  <ion-list class="selection-list" lines="full">
+    <ion-item *ngFor="let item of filteredItems; let i = index" 
+            [class.selected-item]="isItemSelected(item.name)"
+            (click)="toggleSelection(item.name)">
+      <div class="selection-item">
+        <div class="university-logo" *ngIf="showLogos && item.logo">
+          <img [src]="item.logo" alt="{{ item.name }} logo">
+        </div>
+        <div class="item-info">
+          <h3>{{ item.name }}</h3>
+          <div class="item-location" *ngIf="item.country">
+            <ion-icon name="flag-outline"></ion-icon>
+            <span>{{ item.country }}</span>
+          </div>
+        </div>
+        <div class="programs-count" *ngIf="showProgramCount && item.programCount">
+          {{ item.programCount }}
+        </div>
+        <div class="selection-indicator">
+          <div class="circle-select" [class.selected]="isItemSelected(item.name)">
+            <ion-icon *ngIf="isItemSelected(item.name)" name="checkmark"></ion-icon>
+          </div>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <div class="footer-container">
+    <div class="footer-buttons">
+      <ion-button class="back-btn" (click)="clearAll()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+        Clear All
+      </ion-button>
+      <ion-button expand="block" class="apply-btn" (click)="applySelection()">
+        Apply Filter
+      </ion-button>
+    </div>
+  </div>
+  </ion-footer>

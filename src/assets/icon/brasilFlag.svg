@@ -1,0 +1,27 @@
+<svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <mask id="mask0_brazil_flag" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="12" height="9">
+    <rect x="0.666668" y="0.988708" width="10.6667" height="8" fill="white"/>
+  </mask>
+  <g mask="url(#mask0_brazil_flag)">
+  
+    <rect x="0.666668" y="0.988708" width="10.6667" height="8" fill="#009739"/>
+    
+  
+    <path d="M6.00001 1.98871L1.16667 4.98871L6.00001 7.98871L10.8333 4.98871L6.00001 1.98871Z" fill="#FFDF00"/>
+
+    <circle cx="6" cy="4.98871" r="1.8" fill="#002776"/>
+    
+
+    <path d="M4.7 6.08871C5.05 6.53871 5.5 6.78871 6 6.78871C6.5 6.78871 6.95 6.53871 7.3 6.08871" stroke="white" stroke-width="0.2"/>
+    
+
+    <g fill="white">
+      
+      <circle cx="6" cy="4.28871" r="0.15"/> 
+      <circle cx="6.5" cy="4.98871" r="0.13"/> 
+      <circle cx="5.7" cy="5.18871" r="0.13"/> 
+      <circle cx="5.4" cy="4.78871" r="0.12"/> 
+      <circle cx="6.3" cy="4.58871" r="0.12"/> 
+    </g>
+  </g>
+</svg>

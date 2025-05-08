@@ -35,3 +35,26 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+
+@font-face {
+    font-family: 'DM Sans';
+    src: url('./assets/font/DMSans-Regular.ttf') format('woff2'),
+         url('./assets/font/DMSans-Regular.ttf') format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'DM Sans';
+    src: url('./assets/font/DMSans-Regular.ttf') format('woff2'),
+         url('./assets/font/DMSans-Regular.ttf') format('woff');
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  * {
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }

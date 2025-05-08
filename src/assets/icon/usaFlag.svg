@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100%" height="100%" viewBox="0 0 8 8" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g>
+        <!-- White background -->
+        <rect x="0" y="0" width="8" height="8" fill="#FFFFFF" />
+        
+        <!-- Red stripes (simplified to 4) -->
+        <rect x="0" y="0" width="8" height="1" fill="#B22234" />
+        <rect x="0" y="2" width="8" height="1" fill="#B22234" />
+        <rect x="0" y="4" width="8" height="1" fill="#B22234" />
+        <rect x="0" y="6" width="8" height="1" fill="#B22234" />
+        
+        <!-- Blue field -->
+        <rect x="0" y="0" width="4" height="4" fill="#3C3B6E" />
+        
+        <!-- Stars (simplified to 4 dots) -->
+        <circle cx="1" cy="1" r="0.4" fill="white" />
+        <circle cx="3" cy="1" r="0.4" fill="white" />
+        <circle cx="1" cy="3" r="0.4" fill="white" />
+        <circle cx="3" cy="3" r="0.4" fill="white" />
+    </g>
+</svg>

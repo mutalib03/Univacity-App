@@ -1,0 +1,227 @@
+<ion-content *ngIf="program">
+  <div class="program-header">
+    <img [src]="program.image" alt="{{ program.title }}">
+    <div class="header-controls">
+      <span class="icon-button back-button" (click)="backButtonClick()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </span>
+      <div class="action-buttons">
+        <span class="icon-button" (click)="favoriteButtonClick()">
+          <ion-icon [name]="isFavorited ? 'heart' : 'heart-outline'" 
+                   [ngClass]="{'favorited': isFavorited}"></ion-icon>
+        </span>
+        <span class="icon-button" (click)="shareButtonClick()">
+          <img style="width: 24px; height: 24px;" src="../../assets/icon/ShareNetwork.svg" alt="share">
+        </span>
+      </div>
+    </div>
+    <div class="university-logo">
+      <img [src]="program.logo" alt="University logo" />
+    </div>
+  </div>
+  
+  <div class="program-info">
+    <h1 class="program-title">{{ program.title }}</h1>
+    <div class="university-info">
+      <div class="university-name-verified">
+        <img class="verified-badge" [src]="program.badgeMark" alt="verified">
+        <span class="university-name">{{ program.university }}</span>
+      </div>
+      <div class="partner-badge">
+        <img class="verified-badge" [src]="program.flag" alt="country flag">
+        <span>{{ program.country }}</span>
+      </div>
+    </div>
+    
+    <p class="program-description">{{ program.description }}</p>
+    
+    <div class="stats-container">
+      <div class="stats-item">
+        <ion-icon name="eye-outline"></ion-icon>
+        <span>{{ program.views }} Views</span>
+      </div>
+      <div class="stats-item">
+        <img style="margin-right: 6px;" class="verified-badge" src="../../assets/icon/TrendUp.svg" alt="trending up">
+        <span>{{ program.impressions }} Impressions</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="section-container">
+    <h2 class="section-title">Program Breakdown</h2>
+    <div class="breakdown-grid">
+      <div class="breakdown-item">
+         <img class="verified-badge" src="../../assets/icon/Spark.svg" alt="Spark up">
+        <div class="breakdown-content">
+          <span class="title">{{ program.duration }}</span>
+          <span class="subtitle">Duration</span>
+        </div>
+      </div>
+      <div class="breakdown-item">
+         <img class="verified-badge" src="../../assets/icon/Spark.svg" alt="Spark up">
+        <div class="breakdown-content">
+          <span class="title">{{ program.level }}</span>
+          <span class="subtitle">Level</span>
+        </div>
+      </div>
+      <div class="breakdown-item">
+         <img class="verified-badge" src="../../assets/icon/Spark.svg" alt="Spark up">
+        <div class="breakdown-content">
+          <span class="title">{{ program.tuition }}</span>
+          <span class="subtitle">Tuition Fee</span>
+        </div>
+      </div>
+      <div class="breakdown-item">
+         <img class="verified-badge" src="../../assets/icon/Spark.svg" alt="Spark up">
+        <div class="breakdown-content">
+          <span class="title">{{ program.attendance }}</span>
+          <span class="subtitle">Attendance</span>
+        </div>
+      </div>
+      <div class="breakdown-item">
+         <img class="verified-badge" src="../../assets/icon/Spark.svg" alt="Spark up">
+        <div class="breakdown-content">
+          <span class="title">{{ program.language }}</span>
+          <span class="subtitle">Language</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="section-container">
+    <h2 class="section-title">Description</h2>
+    <div class="section-content">
+      <p style="font-size: 18px;">{{ getSectionText('description') }}</p>
+      <div class="read-more" (click)="toggleSection('description')">
+        <span>{{ expandedSections.description ? 'Show less' : 'Read more' }}</span>
+        <ion-icon [name]="expandedSections.description ? 'chevron-up' : 'chevron-down'"></ion-icon>
+      </div>
+    </div>
+  </div>
+  
+  <div class="section-container">
+    <h2 class="section-title" style='font-size: 24px;'>Requirement</h2>
+    <div class="section-content">
+      <div class="requirements-list">
+        <div class="requirement-item" 
+             *ngFor="let requirement of getDisplayedRequirements(); let i = index; let first = first; let last = last"
+             [ngClass]="{'first-item': first, 'middle-item': !first && !last, 'last-item': last}">
+          <div class="check-icon">
+            <img src="../../assets/icon/Checks.svg" alt="check">
+          </div>
+          <p style="color: #666; font-size: 15px;">{{ requirement }}</p>
+        </div>
+      </div>
+      <div *ngIf="areRequirementsTruncated()" class="read-more" (click)="toggleSection('requirements')">
+        <span>{{ expandedSections.requirements ? 'Show less' : 'Read more' }}</span>
+        <ion-icon [name]="expandedSections.requirements ? 'chevron-up' : 'chevron-down'"></ion-icon>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Structure -->
+  <div class="section-container">
+    <h2 class="section-title">Structure</h2>
+    <div class="section-content">
+      <p style="font-size: 18px;">{{ getSectionText('structure') }}</p>
+      <div class="read-more" (click)="toggleSection('structure')">
+        <span>{{ expandedSections.structure ? 'Show less' : 'Read more' }}</span>
+        <ion-icon [name]="expandedSections.structure ? 'chevron-up' : 'chevron-down'"></ion-icon>
+      </div>
+    </div>
+  </div>
+  
+  <div class="section-container">
+    <h2 class="section-title">Fees</h2>
+    <div class="section-content">
+      <p class="" style="margin-bottom: 0; font-size: 18px;">{{ program.fees.serviceFee }}</p>
+      <p class="fees-intro" style="font-size: 18px;">{{ program.fees.internationalStudentFee }}</p>
+      <div class="fees-grid">
+        <div class="fee-item">
+          <img class="verified-badge" src="../../assets/icon/Spark.svg" alt="Spark up">
+          <div class="fee-content">
+            <span class="fee-amount">{{ program.fees.housingFee }}</span>
+            <span class="fee-label">Housing Fee</span>
+          </div>
+        </div>
+        <div class="fee-item">
+          <img class="verified-badge" src="../../assets/icon/Spark.svg" alt="Spark up">
+          <div class="fee-content">
+            <span class="fee-amount">{{ program.fees.acceptanceFee }}</span>
+            <span class="fee-label">Acceptance Fee</span>
+          </div>
+        </div>
+        <div class="fee-item">
+          <img class="verified-badge" src="../../assets/icon/Spark.svg" alt="Spark up">
+          <div class="fee-content">
+            <span class="fee-amount">{{ program.fees.tuitionFee }}</span>
+            <span class="fee-label">Tuition Fee</span>
+          </div>
+        </div>
+        <div class="fee-item">
+          <img class="verified-badge" src="../../assets/icon/Spark.svg" alt="Spark up">
+          <div class="fee-content">
+            <span class="fee-amount">{{ program.fees.applicationFee }}</span>
+            <span class="fee-label">Application Fee</span>
+          </div>
+        </div>
+        <div class="fee-item">
+          <img class="verified-badge" src="../../assets/icon/Spark.svg" alt="Spark up">
+          <div class="fee-content">
+            <span class="fee-amount">{{ program.fees.livingFee }}</span>
+            <span class="fee-label">Living Fee</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Extra Information -->
+  <div class="section-container">
+    <h2 class="section-title">Extra Information</h2>
+    <div class="section-content">
+      <div class="extra-info-list">
+        <div class="extra-info-item" 
+             *ngFor="let info of program.extraInfo; let first = first; let last = last"
+             [ngClass]="{'first-item': first, 'middle-item': !first && !last, 'last-item': last}">
+          <div class="info-icon">
+            <ion-icon name="information-circle-outline"></ion-icon>
+          </div>
+          <div class="info-content">
+            <p class="info-title">{{ info.title }}</p>
+            <p class="info-subtitle" *ngIf="info.subtitle">{{ info.subtitle }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer *ngIf="program">
+  <div class="footer-container">
+    <div class="program-footer">
+      <div class="program-footer-content">
+        <div class="logo-title">
+          <div class="footer-logo">
+            <img [src]="program.logo" alt="University logo" />
+          </div>
+          <div class="footer-title">
+            <p>{{ program.title }}</p>
+            <p class="tuition">{{ program.tuition }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-buttons">
+      <ion-button class="back-btn" (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+        Back
+      </ion-button>
+      <ion-button expand="block" class="apply-btn" (click)="applyNow()">
+        Apply now
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+</ion-footer>

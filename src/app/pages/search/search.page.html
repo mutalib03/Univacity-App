@@ -1,0 +1,110 @@
+<ion-header>
+  <div class="header">
+    <ion-list>
+      <ion-item>
+        <ion-select label="What do you want to study?" label-placement="floating" [(ngModel)]="searchTerm" (ionChange)="onSearchTermChange()">
+          <ion-select-option value="">Show All Programs</ion-select-option>
+          <ion-select-option value="Computer Technologies">Computer Technologies</ion-select-option>
+          <ion-select-option value="Data Science">Data Science</ion-select-option>
+          <ion-select-option value="Environmental Science">Environmental Science</ion-select-option>
+          <ion-select-option value="Business">Business</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <div class="centered-content">
+      <div class="filter-bar">
+        <div class="sort-button" (click)="openSort()">
+          <img style="width: 24px; height:24px;" [src]="'../../assets/icon/sort.svg'" alt="sort" />
+          <span style="margin-left: 4px;">Sort</span>
+        </div>
+
+        <div class="filter-button" (click)="openFilterModal()">
+          <img style="width: 24px; height:24px;" [src]="'../../assets/icon/filter.svg'" alt="sort" />
+          <span style="margin-left: 4px;">Filter</span>
+          <ion-badge class="custom-badge filter-badge"
+            >{{filterCount}}</ion-badge
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content>
+  <div class="filter-chips">
+    @for (filter of activeFilters; track filter) {
+    <ion-chip class="chip">
+      <ion-label> {{filter}}</ion-label>
+      <ion-icon name="close" (click)="removeFilter(filter)"></ion-icon>
+    </ion-chip>
+    }
+  </div>
+
+  <h2 class="search-result-title">Search result</h2> 
+
+  <div class="card-container">  
+    @for (program of programs; track program) {
+    <ion-card class="program-card" (click)="viewProgramDetails(program.id)">
+      <div class="program-image">
+        <img [src]="program.image" alt="University building" />
+        <div class="university-logo">
+          <img [src]="program.logo" alt="University logo" />
+        </div>
+        <div class="partner-badge" *ngIf="program.isPartner">
+          <img style="width: 16px; height:16px;" [src]="program.badgeMark" alt="verified badge" />
+          <span>Official Partner</span>
+        </div>
+      </div>
+
+      <div class="program-content">
+        <h3 class="program-title">{{program.title}}</h3>
+
+        <div class="university-name">
+          <img style="width: 16px; height:16px;" [src]="program.badgeMark" alt="verified badge" />
+          <span>{{program.university}}</span>
+        </div>
+
+        <div class="program-details">
+          <div class="detail-item">
+            <img style="width: 16px; height:16px;" [src]="program.flag" alt="flag" />
+            <span style="margin-left: 4px;">{{program.country}}</span>
+          </div>
+
+          <div class="detail-item">
+            <img style="width: 16px; height:16px;" [src]="'../../assets/icon/GraduationCap.svg'" alt="level" />
+            <span style="margin-left: 4px;">{{program.level}}</span>
+          </div>
+
+          <div class="detail-item">
+            <ion-icon name="time-outline"></ion-icon>
+            <span>{{program.attendance}}</span>
+          </div>
+
+          <div class="detail-item">
+            <ion-icon name="time-outline"></ion-icon>
+            <span>{{program.duration}}</span>
+          </div>
+
+          <div class="detail-item">
+            <img style="width: 16px; height:16px;" [src]="'../../assets/icon/Translate.svg'" alt="translate" />
+            <span style="margin-left: 4px;">{{program.language}}</span>
+          </div>
+        </div>
+
+        <div class="program-footer">
+          <div class="tuition">{{program.tuition}}</div>
+          <div class="actions">
+            <ion-button fill="clear" class="action-button" (click)="$event.stopPropagation()">
+              <ion-icon name="share-social-outline"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" class="action-button" (click)="$event.stopPropagation()">
+              <ion-icon name="heart-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </ion-card>
+    }
+  </div>
+</ion-content>

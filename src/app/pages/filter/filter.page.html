@@ -1,0 +1,99 @@
+
+<ion-header>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <p>Filter</p>
+  
+</ion-header>
+
+<ion-content>
+  <div class="filter-section">
+    <h3>Tuition fee</h3>
+    <div class="range-inputs">
+      <ion-item lines="none">
+        <ion-input label="Min" type="text" [value]="'$' + tuitionRange.lower.toLocaleString()"></ion-input>
+      </ion-item>
+      
+      <ion-item lines="none">
+        <ion-input label="Max" type="text" [value]="'$' + tuitionRange.upper.toLocaleString()"></ion-input>
+      </ion-item>
+    </div>
+    
+    <ion-range [min]="0" [max]="200000" [step]="1000" [dualKnobs]="true" [(ngModel)]="tuitionRange">
+      <ion-label slot="start">50k</ion-label>
+      <ion-label slot="end">120k</ion-label>
+    </ion-range>
+  </div>
+  
+  <ion-item-divider></ion-item-divider>
+  
+  <ion-item (click)="openSelectionModal('institutes')" detail="true">
+    <ion-label>
+      <h3>Institutes</h3>
+      <p>{{ displayTexts['institutes'] }}</p>
+    </ion-label>
+  </ion-item>
+  
+  <ion-item-divider></ion-item-divider>
+  
+  <ion-item (click)="openSelectionModal('educationLevels')" detail="true">
+    <ion-label>
+      <h3>Education Level</h3>
+      <p>{{ displayTexts['educationLevels'] }}</p>
+    </ion-label>
+  </ion-item>
+  
+  <ion-item-divider></ion-item-divider>
+  
+  <ion-item (click)="openSelectionModal('countries')" detail="true">
+    <ion-label>
+      <h3>Country</h3>
+      <p>{{ displayTexts['countries'] }}</p>
+    </ion-label>
+  </ion-item>
+  
+  <ion-item-divider></ion-item-divider>
+  
+  <ion-item (click)="openSelectionModal('disciplines')" detail="true">
+    <ion-label>
+      <h3>Discipline</h3>
+      <p>{{ displayTexts['disciplines'] }}</p>
+    </ion-label>
+  </ion-item>
+  
+  <ion-item-divider></ion-item-divider>
+  
+  <ion-item (click)="openSelectionModal('languages')" detail="true">
+    <ion-label>
+      <h3>Study Language</h3>
+      <p>{{ displayTexts['languages'] }}</p>
+    </ion-label>
+  </ion-item>
+  
+  <ion-item-divider></ion-item-divider>
+  
+  <ion-item (click)="openSelectionModal('attendance')" detail="true">
+    <ion-label>
+      <h3>Attendance</h3>
+      <p>{{ displayTexts['attendance'] }}</p>
+    </ion-label>
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+<div class="footer-container ">
+  <div class="footer-buttons">
+    <ion-button class="back-btn" (click)="clearAll()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+      Clear All
+    </ion-button>
+    <ion-button expand="block" class="apply-btn" (click)="dismiss(true)">
+      View Results <ion-icon name="arrow-forward-outline"></ion-icon>
+    </ion-button>
+  </div>
+</div>
+</ion-footer>
